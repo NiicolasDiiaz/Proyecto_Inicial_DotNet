@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Factura_V3.EntityConfig
 {
-    public class ProductEntityConfig
+    public class CompanyEntityConfig
     {
-        public static void SetProductEntityConfig(EntityTypeBuilder<Product> entityBuilder)
+        public static void SetCompanyEntityConfig(EntityTypeBuilder<Company> entityBuilder)
         {
-            entityBuilder.HasKey(x => x.ProductId);
+            entityBuilder.HasKey(x => x.CompanyId);
             entityBuilder.Property(x => x.Name).IsRequired();
-            entityBuilder.Property(x => x.UnitPrice).IsRequired();
-            entityBuilder.Property(x => x.TaxRateId).IsRequired();
         }
     }
 }

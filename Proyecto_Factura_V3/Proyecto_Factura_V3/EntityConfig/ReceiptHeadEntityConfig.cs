@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Factura_V3.EntityConfig
 {
-    public class BranchEntityConfig
+    public class ReceiptHeadEntityConfig
     {
-        public static void SetBranchEntityConfig(EntityTypeBuilder<Branch> entityBuilder)
+        public static void SetReceiptHeadEntityConfig(EntityTypeBuilder<ReceiptHead> entityBuilder)
         {
-            entityBuilder.HasKey(x => x.BranchId);
-            entityBuilder.Property(x => x.Name).IsRequired();
+            entityBuilder.HasKey(x => x.ReceiptHeadId);
             entityBuilder.Property(x => x.CompanyId).IsRequired();
+            entityBuilder.Property(x => x.CustomerId).IsRequired();
+            entityBuilder.Property(x => x.BranchId).IsRequired();
         }
     }
 }

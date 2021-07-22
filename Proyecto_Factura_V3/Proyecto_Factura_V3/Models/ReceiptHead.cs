@@ -7,6 +7,9 @@ namespace Proyecto_Factura_V3.Models
 {
     public class ReceiptHead
     {
+        public int ReceiptHeadId { get; set; }
+
+
         public int CompanyId { get; set; }
         public Company Company { get; set; }
 

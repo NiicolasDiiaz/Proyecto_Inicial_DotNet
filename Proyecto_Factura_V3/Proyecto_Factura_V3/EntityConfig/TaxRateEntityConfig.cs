@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Factura_V3.EntityConfig
 {
-    public class ReceiptEntityConfig
+    public class TaxRatehEntityConfig
     {
-        public static void SetReceiptEntityConfig(EntityTypeBuilder<Receipt> entityBuilder)
+        public static void SetTaxRateEntityConfig(EntityTypeBuilder<TaxRate> entityBuilder)
         {
-            entityBuilder.HasKey(x => x.ReceiptId);
-            entityBuilder.Property(x => x.ReceiptHeadId).IsRequired();
+            entityBuilder.HasKey(x => x.TaxRateId);
+            entityBuilder.Property(x => x.Rate).IsRequired();
         }
     }
 }

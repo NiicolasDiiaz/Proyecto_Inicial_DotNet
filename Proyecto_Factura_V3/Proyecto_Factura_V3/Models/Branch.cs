@@ -16,6 +16,8 @@ namespace Proyecto_Factura_V3.Models
 
         public int Phone { get; set; }
 
+        public string Country { get; set; }
+        public string City { get; set; }
         public string Address { get; set; }
 
         public string EmailAddress { get; set; }

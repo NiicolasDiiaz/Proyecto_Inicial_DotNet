@@ -12,7 +12,8 @@ namespace Proyecto_Factura_V3.EntityConfig
         public static void SetCustomerEntityConfig(EntityTypeBuilder<Customer> entityBuilder)
         {
             entityBuilder.HasKey(x => x.CustomerId);
-            //entityBuilder.Property(x => x.Name).IsRequired();
+            entityBuilder.Property(x => x.FirstName).IsRequired();
+            entityBuilder.Property(x => x.LastName).IsRequired();
         }
     }
 }
