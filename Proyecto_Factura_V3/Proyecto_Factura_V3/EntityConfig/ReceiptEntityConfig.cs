@@ -9,7 +9,7 @@ namespace Proyecto_Factura_V3.EntityConfig
 {
     public class ReceiptEntityConfig
     {
-        public static void SetReceiptEntityConfig(EntityTypeBuilder<Receipt> entityBuilder)
+        public static void SetReceiptEntityConfig(EntityTypeBuilder<ReceiptDetail> entityBuilder)
         {
             entityBuilder.HasKey(x => x.ReceiptId);
             //entityBuilder.Property(x => x.Name).IsRequired();

@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Proyecto_Factura_V3.Models
 {
-    public class Branch
+    public class Company
     {
-        public int BranchId { get; set; }
+        public int CompanyId { get; set; }
 
         public string Name { get; set; }
 
@@ -20,8 +19,9 @@ namespace Proyecto_Factura_V3.Models
 
         public string EmailAddress { get; set; }
 
+        public int Nit { get; set; }
 
-        public int CompanyId { get; set; }
-        public Company Company { get; set; }
+
+        public List<Branch> Branches { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace Proyecto_Factura_V3.Context
     {
 
         //Añado DbSet para cada clase. Una tabla por clase. Nombre en plural:
-        public DbSet<Receipt> Receipts { get; set; }
+        public DbSet<ReceiptDetail> Receipts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Branch> Branches { get; set; }
