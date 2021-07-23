@@ -12,7 +12,6 @@ namespace Proyecto_Factura_V3.EntityConfig
         public static void SetReceiptHeadEntityConfig(EntityTypeBuilder<ReceiptHead> entityBuilder)
         {
             entityBuilder.HasKey(x => x.ReceiptHeadId);
-            entityBuilder.Property(x => x.CompanyId).IsRequired();
             entityBuilder.Property(x => x.CustomerId).IsRequired();
             entityBuilder.Property(x => x.BranchId).IsRequired();
         }

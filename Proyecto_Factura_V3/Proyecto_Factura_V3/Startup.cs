@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Proyecto_Factura_V3.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +32,37 @@ namespace Proyecto_Factura_V3
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proyecto_Factura_V3", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo 
+                { 
+                    Title = "Proyecto_Factura_V3", 
+                    Version = "v1",
+
+                    //Info adicional a la estandar:
+                    Description = "API para una factura",
+                    TermsOfService = new Uri("https://google.com"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Nicolas Diaz",
+                        Email = "nicolas.diaz@teaminternational.com",
+                        Url = new Uri("https://google.com")
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "License type ",
+                        Url = new Uri("https://google.com")
+                    }
+                });
             });
+
+            //Adding local database:
+            services.AddDbContext<DDBBContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            );
+
+            //Database inyection:
+            services.AddTransient<IDDBBContext, DDBBContext>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

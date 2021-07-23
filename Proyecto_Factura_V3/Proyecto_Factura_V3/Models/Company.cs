@@ -15,7 +15,6 @@ namespace Proyecto_Factura_V3.Models
 
         public int Nit { get; set; }
 
-
         public List<Branch> Branches { get; set; }
     }
 }

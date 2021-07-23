@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Factura_V3.EntityConfig
 {
-    public class TaxRatehEntityConfig
+    public class TaxRateEntityConfig
     {
         public static void SetTaxRateEntityConfig(EntityTypeBuilder<TaxRate> entityBuilder)
         {

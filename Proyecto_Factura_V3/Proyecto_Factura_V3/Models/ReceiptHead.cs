@@ -9,8 +9,9 @@ namespace Proyecto_Factura_V3.Models
     {
         public int ReceiptHeadId { get; set; }
 
-
-        public int CompanyId { get; set; }
+        //No FKey for company
+        //It is alrready in branch
+        //public int CompanyId { get; set; }
         public Company Company { get; set; }
 
 
