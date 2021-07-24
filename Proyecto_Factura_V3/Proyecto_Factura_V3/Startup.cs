@@ -66,9 +66,11 @@ namespace Proyecto_Factura_V3
 
             //Respos injection:
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ITaxRateRepository, TaxRateRepository>();
 
             //Services injection:
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ITaxRateService, TaxRateService>();
 
 
         }

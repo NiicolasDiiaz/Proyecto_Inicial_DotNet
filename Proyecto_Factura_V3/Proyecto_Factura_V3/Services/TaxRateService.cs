@@ -7,38 +7,38 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Factura_V3.Services
 {
-    public class ProductService : IProductService
+    public class TaxRateService : ITaxRateService
     {
-        private readonly IProductRepository _repository;
+        private readonly ITaxRateRepository _repository;
 
-        public ProductService(IProductRepository repository)
+        public TaxRateService(ITaxRateRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<Product> GetId(int id)
+        public async Task<TaxRate> GetId(int id)
         {
             return await _repository.GetId(id);
         }
 
-        public List<Product> GetAll()
+        public List<TaxRate> GetAll()
         {
             return _repository.GetAll();
         }
 
 
-        public async Task<Product> AddEntity(Product entity)
+        public async Task<TaxRate> AddEntity(TaxRate entity)
         {
             return await _repository.AddEntity(entity);
         }
 
-        public async Task<Product> UpdateEntity(Product entity)
+        public async Task<TaxRate> UpdateEntity(TaxRate entity)
         {
             return await _repository.UpdateEntity(entity);
         }
 
 
-        public async Task DeleteEntity(Product entity)
+        public async Task DeleteEntity(TaxRate entity)
         {
             await _repository.DeleteEntity(entity);
         }

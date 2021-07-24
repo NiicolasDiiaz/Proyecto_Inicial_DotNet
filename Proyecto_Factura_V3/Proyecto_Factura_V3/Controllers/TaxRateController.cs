@@ -11,13 +11,13 @@ namespace Proyecto_Factura_V3.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProductsController : ControllerBase
+    public class TaxRateController : ControllerBase
     {
-        private readonly ILogger<ProductsController> _logger;
+        private readonly ILogger<TaxRateController> _logger;
 
-        private readonly IProductService _service;
+        private readonly ITaxRateService _service;
 
-        public ProductsController(IProductService service, ILogger<ProductsController> logger)
+        public TaxRateController(ITaxRateService service, ILogger<TaxRateController> logger)
         {
             _service = service;
 
@@ -25,13 +25,13 @@ namespace Proyecto_Factura_V3.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<Product> Get(int id) //Deberia ser (int? id) ? Acepto null y lidio con eso
+        public async Task<TaxRate> Get(int id) //Deberia ser (int? id) ? Acepto null y lidio con eso
         {
             return await _service.GetId(id);
         }
         
         [HttpGet]
-        public List<Product> Get() //Deberia ser (int? id) ? Acepto null y lidio con eso
+        public List<TaxRate> Get() //Deberia ser (int? id) ? Acepto null y lidio con eso
         {
             return _service.GetAll();
         }
@@ -39,7 +39,7 @@ namespace Proyecto_Factura_V3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken] //Potection against bots
-        public async Task<Product> Post([FromBody] Product request)
+        public async Task<TaxRate> Post([FromBody] TaxRate request)
         {
             await _service.AddEntity(request);
             return request;
@@ -48,7 +48,7 @@ namespace Proyecto_Factura_V3.Controllers
 
         [HttpPut("{id}")]
         [ValidateAntiForgeryToken] //Potection against bots
-        public async  Task<Product> Put(int id, [FromBody] Product request)
+        public async  Task<TaxRate> Put(int id, [FromBody] TaxRate request)
         {
             var model = await _service.GetId(id);
             await _service.UpdateEntity(model);
