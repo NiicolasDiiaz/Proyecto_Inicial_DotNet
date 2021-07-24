@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Proyecto_Factura_V3.Models;
+using Proyecto_Factura_V3.Request;
 using Proyecto_Factura_V3.Services;
 using System;
 using System.Collections.Generic;
@@ -38,21 +39,17 @@ namespace Proyecto_Factura_V3.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken] //Potection against bots
-        public async Task<TaxRate> Post([FromBody] TaxRate request)
+        public async Task<TaxRate> Post([FromBody] TaxRateRequest request)
         {
-            await _service.AddEntity(request);
-            return request;
+            return await _service.AddEntity(request);
         }
 
 
-        [HttpPut("{id}")]
-        [ValidateAntiForgeryToken] //Potection against bots
-        public async  Task<TaxRate> Put(int id, [FromBody] TaxRate request)
+        [HttpPut]
+        public async Task<TaxRate> Put([FromBody] TaxRate request)
         {
-            var model = await _service.GetId(id);
-            await _service.UpdateEntity(model);
-            return model;
+            await _service.UpdateEntity(request);
+            return request;
         }
 
 

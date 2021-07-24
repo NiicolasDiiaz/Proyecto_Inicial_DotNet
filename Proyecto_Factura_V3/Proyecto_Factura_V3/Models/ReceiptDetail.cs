@@ -19,5 +19,7 @@ namespace Proyecto_Factura_V3.Models
         public double TaxRate{ get; set; }
 
         public double TotalValue { get; set; }
+
+        public int ReceiptId { get; set; }
     }
 }

@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Proyecto_Factura_V3.Models
+namespace Proyecto_Factura_V3.Request
 {
-    public class TaxRate
+    public class TaxRateRequest
     {
-        public int TaxRateId { get; set; }
-
-        //Two categories:
-        //0 - general
-        //1- family basket (family market/shopping basket)
         public int Category { get; set; }
 
         //Rate as a decimal: 0.19 instead of 19
         public double Rate { get; set; }
-
     }
 }

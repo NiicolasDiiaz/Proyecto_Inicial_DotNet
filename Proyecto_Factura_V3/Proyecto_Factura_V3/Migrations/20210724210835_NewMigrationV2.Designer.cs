@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proyecto_Factura_V3.DataAccess;
 
 namespace Proyecto_Factura_V3.Migrations
 {
     [DbContext(typeof(DDBBContext))]
-    partial class DDBBContextModelSnapshot : ModelSnapshot
+    [Migration("20210724210835_NewMigrationV2")]
+    partial class NewMigrationV2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,7 +174,7 @@ namespace Proyecto_Factura_V3.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("ReceiptId")
+                    b.Property<int?>("ReceiptId")
                         .HasColumnType("int");
 
                     b.Property<double>("TaxRate")
@@ -281,9 +283,7 @@ namespace Proyecto_Factura_V3.Migrations
 
                     b.HasOne("Proyecto_Factura_V3.Models.Receipt", null)
                         .WithMany("ReceiptDetails")
-                        .HasForeignKey("ReceiptId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ReceiptId");
 
                     b.Navigation("Product");
                 });

@@ -1,4 +1,5 @@
 ﻿using Proyecto_Factura_V3.Models;
+using Proyecto_Factura_V3.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Proyecto_Factura_V3.Services
         Task<Product> GetId(int id);
         List<Product> GetAll();
 
-        Task<Product> AddEntity(Product entity);
+        Task<Product> AddEntity(ProductRequest entity);
 
         Task<Product> UpdateEntity(Product entity);
 

@@ -12,6 +12,8 @@ namespace Proyecto_Factura_V3.Models
         public int ReceiptHeadId { get; set; }
         public ReceiptHead ReceiptHead { get; set; }
 
+        public DateTime Date { get; set; }
+
         public List<ReceiptDetail> ReceiptDetails { get; set; }
     }
 }

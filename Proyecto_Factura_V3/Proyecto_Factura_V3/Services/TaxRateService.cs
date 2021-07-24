@@ -1,5 +1,6 @@
 ﻿using Proyecto_Factura_V3.Models;
 using Proyecto_Factura_V3.Repositories;
+using Proyecto_Factura_V3.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +28,13 @@ namespace Proyecto_Factura_V3.Services
         }
 
 
-        public async Task<TaxRate> AddEntity(TaxRate entity)
+        public async Task<TaxRate> AddEntity(TaxRateRequest entity)
         {
-            return await _repository.AddEntity(entity);
+            return await _repository.AddEntity(new TaxRate
+            {
+                Category = entity.Category,
+                Rate = entity.Rate
+            });
         }
 
         public async Task<TaxRate> UpdateEntity(TaxRate entity)

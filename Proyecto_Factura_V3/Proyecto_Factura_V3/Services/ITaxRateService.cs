@@ -1,4 +1,5 @@
 ﻿using Proyecto_Factura_V3.Models;
+using Proyecto_Factura_V3.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Proyecto_Factura_V3.Services
         Task<TaxRate> GetId(int id);
         List<TaxRate> GetAll();
 
-        Task<TaxRate> AddEntity(TaxRate entity);
+        Task<TaxRate> AddEntity(TaxRateRequest entity);
 
         Task<TaxRate> UpdateEntity(TaxRate entity);
 
