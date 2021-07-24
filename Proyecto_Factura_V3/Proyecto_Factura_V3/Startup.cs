@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Proyecto_Factura_V3.DataAccess;
+using Proyecto_Factura_V3.Repositories;
+using Proyecto_Factura_V3.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,8 +61,14 @@ namespace Proyecto_Factura_V3
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
 
-            //Database inyection:
+            //Database injection:
             services.AddTransient<IDDBBContext, DDBBContext>();
+
+            //Respos injection:
+            services.AddTransient<IProductRepository, ProductRepository>();
+
+            //Services injection:
+            services.AddTransient<IProductService, ProductService>();
 
 
         }

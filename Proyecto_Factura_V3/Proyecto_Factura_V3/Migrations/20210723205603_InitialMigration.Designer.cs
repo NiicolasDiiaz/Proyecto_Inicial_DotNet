@@ -10,7 +10,7 @@ using Proyecto_Factura_V3.DataAccess;
 namespace Proyecto_Factura_V3.Migrations
 {
     [DbContext(typeof(DDBBContext))]
-    [Migration("20210723164820_InitialMigration")]
+    [Migration("20210723205603_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
