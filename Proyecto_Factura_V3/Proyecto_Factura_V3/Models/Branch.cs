@@ -24,6 +24,8 @@ namespace Proyecto_Factura_V3.Models
 
 
         public int CompanyId { get; set; }
-        public Company Company { get; set; }
+        //No incluir Company o se crea un loop
+        //Company tiene branch y a la vez branch tendría  Company(?)!!!!!
+        //public Company Company { get; set; }
     }
 }

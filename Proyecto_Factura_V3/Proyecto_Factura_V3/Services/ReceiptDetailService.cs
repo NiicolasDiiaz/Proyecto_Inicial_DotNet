@@ -8,43 +8,43 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Factura_V3.Services
 {
-    public class ReceiptHeadService : IReceiptHeadService
+    public class ReceiptDetailService : IReceiptDetailService
     {
-        private readonly IReceiptHeadRepository _repository;
+        private readonly IReceiptDetailRepository _repository;
 
-        public ReceiptHeadService(IReceiptHeadRepository repository)
+        public ReceiptDetailService(IReceiptDetailRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<ReceiptHead> GetId(int id)
+        public async Task<ReceiptDetail> GetId(int id)
         {
             return await _repository.GetId(id);
         }
 
-        public List<ReceiptHead> GetAll()
+        public List<ReceiptDetail> GetAll()
         {
             return _repository.GetAll();
         }
 
 
-        public async Task<ReceiptHead> AddEntity(ReceiptHeadRequest entity)
+        public async Task<ReceiptDetail> AddEntity(ReceiptDetailRequest entity)
         {
-            return await _repository.AddEntity(new ReceiptHead
+            return await _repository.AddEntity(new ReceiptDetail
             {
-                BranchId = entity.BranchId,
-                CustomerId = entity.CustomerId,
-                Date = DateTime.Now
-            }); ;
+                Quantity = entity.Quantity,
+                ProductId = entity.ProductId,
+                ReceiptHeadId = entity.ReceiptHeadId
+            });
         }
 
-        public async Task<ReceiptHead> UpdateEntity(ReceiptHead entity)
+        public async Task<ReceiptDetail> UpdateEntity(ReceiptDetail entity)
         {
             return await _repository.UpdateEntity(entity);
         }
 
 
-        public async Task DeleteEntity(ReceiptHead entity)
+        public async Task DeleteEntity(ReceiptDetail entity)
         {
             await _repository.DeleteEntity(entity);
         }

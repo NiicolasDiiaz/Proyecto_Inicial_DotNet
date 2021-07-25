@@ -11,6 +11,6 @@ namespace Proyecto_Factura_V3.Request
 
         public int ProductId { get; set; }
 
-        public int ReceiptId { get; set; }
+        public int ReceiptHeadId { get; set; }
     }
 }

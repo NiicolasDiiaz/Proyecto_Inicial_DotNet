@@ -12,7 +12,6 @@ namespace Proyecto_Factura_V3.Models
         //No FKey for company
         //It is alrready in branch
         //public int CompanyId { get; set; }
-        public Company Company { get; set; }
 
 
         public int CustomerId { get; set; }
@@ -21,5 +20,9 @@ namespace Proyecto_Factura_V3.Models
 
         public int BranchId { get; set; }
         public Branch Branch { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public List<ReceiptDetail> ReceiptDetails { get; set; }
     }
 }

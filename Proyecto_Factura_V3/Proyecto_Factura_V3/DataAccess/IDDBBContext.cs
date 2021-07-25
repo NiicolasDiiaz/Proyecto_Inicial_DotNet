@@ -19,7 +19,6 @@ namespace Proyecto_Factura_V3.DataAccess
         DbSet<Company> Companies { get; set; }
         DbSet<Customer> Customers { get; set; }
         DbSet<Product> Products { get; set; }
-        DbSet<Receipt> Receipts { get; set; }
         DbSet<ReceiptDetail> ReceiptDetails { get; set; }
         DbSet<ReceiptHead> ReceiptHeads { get; set; }
         DbSet<TaxRate> TaxRates { get; set; }

@@ -22,7 +22,6 @@ namespace Proyecto_Factura_V3.DataAccess
         public DbSet<Company> Companies { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Receipt> Receipts { get; set; }
         public DbSet<ReceiptDetail> ReceiptDetails { get; set; }
         public DbSet<ReceiptHead>  ReceiptHeads { get; set; }
         public DbSet<TaxRate> TaxRates { get; set; }
@@ -35,7 +34,6 @@ namespace Proyecto_Factura_V3.DataAccess
             CompanyEntityConfig.SetCompanyEntityConfig(modelBuilder.Entity<Company>());
             CustomerEntityConfig.SetCustomerEntityConfig(modelBuilder.Entity<Customer>());
             ProductEntityConfig.SetProductEntityConfig(modelBuilder.Entity<Product>());
-            ReceiptEntityConfig.SetReceiptEntityConfig(modelBuilder.Entity<Receipt>());
             ReceiptDetailEntityConfig.SetReceiptDetailEntityConfig(modelBuilder.Entity<ReceiptDetail>());
             ReceiptHeadEntityConfig.SetReceiptHeadEntityConfig(modelBuilder.Entity<ReceiptHead>());
             TaxRateEntityConfig.SetTaxRateEntityConfig(modelBuilder.Entity<TaxRate>());

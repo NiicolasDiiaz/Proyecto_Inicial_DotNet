@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Proyecto_Factura_V3.DataAccess;
 using Proyecto_Factura_V3.Models;
 
@@ -18,12 +19,12 @@ namespace Proyecto_Factura_V3.Repositories
 
         public async Task<ReceiptHead> GetId(int id)
         {
-            return await _context.ReceiptHeads.FindAsync(id);
+            return await _context.ReceiptHeads.Include(x => x.Branch).Include(x => x.Customer).Include(x => x.ReceiptDetails).Where(x => x.ReceiptHeadId == id).FirstOrDefaultAsync();
         }
 
         public List<ReceiptHead> GetAll()
         {
-            return _context.ReceiptHeads.Select(x => x).ToList();
+            return _context.ReceiptHeads.Include(x => x.Branch).Include(x => x.Customer).Include(x => x.ReceiptDetails).Select(x => x).ToList();
         }
 
 

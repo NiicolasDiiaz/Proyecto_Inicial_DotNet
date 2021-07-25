@@ -12,6 +12,7 @@ namespace Proyecto_Factura_V3.Services
     {
         private readonly IBranchRepository _repository;
 
+
         public BranchService(IBranchRepository repository)
         {
             _repository = repository;
@@ -38,8 +39,8 @@ namespace Proyecto_Factura_V3.Services
                 Address = entity.Address,
                 EmailAddress = entity.EmailAddress,
                 Phone = entity.Phone,
-                CompanyId = entity.CompanyId,
-                Country = entity.Country,
+                CompanyId = entity.CompanyId,         
+                Country = entity.Country
             });
         }
 

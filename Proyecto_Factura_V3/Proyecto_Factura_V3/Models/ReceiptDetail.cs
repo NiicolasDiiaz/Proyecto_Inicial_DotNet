@@ -20,6 +20,6 @@ namespace Proyecto_Factura_V3.Models
 
         public double TotalValue { get; set; }
 
-        public int ReceiptId { get; set; }
+        public int ReceiptHeadId { get; set; }
     }
 }
