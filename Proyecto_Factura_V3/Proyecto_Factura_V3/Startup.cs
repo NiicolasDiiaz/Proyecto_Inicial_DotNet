@@ -70,6 +70,7 @@ namespace Proyecto_Factura_V3
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<ICompanyRepository, CompanyRepository>();
             services.AddTransient<IBranchRepository, BranchRepository>();
+            services.AddTransient<IReceiptHeadRepository, ReceiptHeadRepository>();
 
             //Services injection:
             services.AddTransient<IProductService, ProductService>();
@@ -77,6 +78,7 @@ namespace Proyecto_Factura_V3
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<ICompanyService, CompanyService>();
             services.AddTransient<IBranchService, BranchService>();
+            services.AddTransient<IReceiptHeadService, ReceiptHeadService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
