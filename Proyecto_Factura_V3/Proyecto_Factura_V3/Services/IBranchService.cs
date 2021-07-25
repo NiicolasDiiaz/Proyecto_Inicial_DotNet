@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Factura_V3.Services
 {
-    public interface ICompanyService
+    public interface IBranchService
     {
-        Task<Company> GetId(int id);
-        List<Company> GetAll();
+        Task<Branch> GetId(int id);
+        List<Branch> GetAll();
 
-        Task<Company> AddEntity(CompanyRequest entity);
+        Task<Branch> AddEntity(BranchRequest entity);
 
-        Task<Company> UpdateEntity(Company entity);
+        Task<Branch> UpdateEntity(Branch entity);
 
-        Task DeleteEntity(Company entity);
+        Task DeleteEntity(Branch entity);
         Task DeleteId(int id);
     }
 }

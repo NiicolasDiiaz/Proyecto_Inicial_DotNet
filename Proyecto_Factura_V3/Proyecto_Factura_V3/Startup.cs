@@ -67,12 +67,16 @@ namespace Proyecto_Factura_V3
             //Respos injection:
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ITaxRateRepository, TaxRateRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<ICompanyRepository, CompanyRepository>();
+            services.AddTransient<IBranchRepository, BranchRepository>();
 
             //Services injection:
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ITaxRateService, TaxRateService>();
-
-
+            services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<ICompanyService, CompanyService>();
+            services.AddTransient<IBranchService, BranchService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

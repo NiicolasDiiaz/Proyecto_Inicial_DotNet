@@ -8,46 +8,43 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Factura_V3.Services
 {
-    public class ProductService : IProductService
+    public class CompanyService : ICompanyService
     {
-        private readonly IProductRepository _repository;
-        
-        public ProductService(IProductRepository repository)
+        private readonly ICompanyRepository _repository;
+
+        public CompanyService(ICompanyRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<Product> GetId(int id)
+        public async Task<Company> GetId(int id)
         {
             return await _repository.GetId(id);
         }
 
-        public List<Product> GetAll()
+        public List<Company> GetAll()
         {
             return _repository.GetAll();
         }
 
 
-        public async Task<Product> AddEntity(ProductRequest entity)
+        public async Task<Company> AddEntity(CompanyRequest entity)
         {
-            var model = new Product
+            return await _repository.AddEntity(new Company
             {
-                Description = entity.Description,
-                Manufacturer = entity.Manufacturer,
                 Name = entity.Name,
-                UnitPrice = entity.UnitPrice,
-                TaxRateId = entity.TaxRateId,
-            };
-            return await _repository.AddEntity(model);
+                Description = entity.Description,
+                Nit = entity.Nit
+            });
         }
 
-        public async Task<Product> UpdateEntity(Product entity)
+        public async Task<Company> UpdateEntity(Company entity)
         {
             return await _repository.UpdateEntity(entity);
         }
 
 
-        public async Task DeleteEntity(Product entity)
+        public async Task DeleteEntity(Company entity)
         {
             await _repository.DeleteEntity(entity);
         }

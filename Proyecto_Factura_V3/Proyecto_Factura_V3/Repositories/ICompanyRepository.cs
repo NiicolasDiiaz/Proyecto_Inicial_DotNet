@@ -1,18 +1,17 @@
 ﻿using Proyecto_Factura_V3.Models;
-using Proyecto_Factura_V3.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Proyecto_Factura_V3.Services
+namespace Proyecto_Factura_V3.Repositories
 {
-    public interface ICompanyService
+    public interface ICompanyRepository
     {
         Task<Company> GetId(int id);
         List<Company> GetAll();
 
-        Task<Company> AddEntity(CompanyRequest entity);
+        Task<Company> AddEntity(Company entity);
 
         Task<Company> UpdateEntity(Company entity);
 

@@ -12,13 +12,13 @@ namespace Proyecto_Factura_V3.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TaxRateController : ControllerBase
+    public class CustomersController : ControllerBase
     {
-        private readonly ILogger<TaxRateController> _logger;
+        private readonly ILogger<CustomersController> _logger;
 
-        private readonly ITaxRateService _service;
+        private readonly ICustomerService _service;
 
-        public TaxRateController(ITaxRateService service, ILogger<TaxRateController> logger)
+        public CustomersController(ICustomerService service, ILogger<CustomersController> logger)
         {
             _service = service;
 
@@ -26,27 +26,27 @@ namespace Proyecto_Factura_V3.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<TaxRate> Get(int id) //Deberia ser (int? id) ? Acepto null y lidio con eso
+        public async Task<Customer> Get(int id) //Deberia ser (int? id) ? Acepto null y lidio con eso
         {
             return await _service.GetId(id);
         }
         
         [HttpGet]
-        public List<TaxRate> Get() //Deberia ser (int? id) ? Acepto null y lidio con eso
+        public List<Customer> Get() //Deberia ser (int? id) ? Acepto null y lidio con eso
         {
             return _service.GetAll();
         }
 
 
         [HttpPost]
-        public async Task<TaxRate> Post([FromBody] TaxRateRequest request)
+        public async Task<Customer> Post([FromBody] CustomerRequest request)
         {
             return await _service.AddEntity(request);
         }
 
 
         [HttpPut]
-        public async Task<TaxRate> Put([FromBody] TaxRate request)
+        public async Task<Customer> Put([FromBody] Customer request)
         {
             await _service.UpdateEntity(request);
             return request;
