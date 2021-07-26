@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Proyecto_Factura_V3.Models;
 using Proyecto_Factura_V3.Request;
 using Proyecto_Factura_V3.Services;
+using Proyecto_Factura_V3.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,13 @@ namespace Proyecto_Factura_V3.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ReceiptHeadsController : ControllerBase
+    public class ReceiptsController : ControllerBase
     {
-        private readonly ILogger<ReceiptHeadsController> _logger;
+        private readonly ILogger<ReceiptsController> _logger;
 
         private readonly IReceiptHeadService _service;
 
-        public ReceiptHeadsController(IReceiptHeadService service, ILogger<ReceiptHeadsController> logger)
+        public ReceiptsController(IReceiptHeadService service, ILogger<ReceiptsController> logger)
         {
             _service = service;
 
@@ -26,38 +27,36 @@ namespace Proyecto_Factura_V3.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ReceiptHead> Get(int id) //Deberia ser (int? id) ? Acepto null y lidio con eso
+        public async Task<ReceiptHeadView> Get(int id) //Deberia ser (int? id) ? Acepto null y lidio con eso
         {
             return await _service.GetId(id);
         }
         
         [HttpGet]
-        public List<ReceiptHead> Get() //Deberia ser (int? id) ? Acepto null y lidio con eso
+        public async Task<List<ReceiptHeadView>> Get() //Deberia ser (int? id) ? Acepto null y lidio con eso
         {
-            return _service.GetAll();
+            return await _service.GetAll();
         }
 
 
         [HttpPost]
-        public async Task<ReceiptHead> Post([FromBody] ReceiptHeadRequest request)
+        public async Task<ReceiptHeadView> Post([FromBody] ReceiptHeadRequest request)
         {
             return await _service.AddEntity(request);
         }
 
 
         [HttpPut]
-        public async Task<ReceiptHead> Put([FromBody] ReceiptHead request)
+        public async Task<ReceiptHeadView> Put([FromBody] ReceiptHead request)
         {
-            await _service.UpdateEntity(request);
-            return request;
+            return await _service.UpdateEntity(request);
         }
 
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id) 
+        public async Task Delete(int id) 
         {
             await _service.DeleteId(id);
-            return Ok();
         }
     }
 }

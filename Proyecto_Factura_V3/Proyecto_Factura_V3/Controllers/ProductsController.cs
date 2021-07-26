@@ -53,10 +53,9 @@ namespace Proyecto_Factura_V3.Controllers
 
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id) 
+        public async Task Delete(int id) 
         {
             await _service.DeleteId(id);
-            return Ok();
         }
     }
 }

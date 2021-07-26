@@ -23,6 +23,10 @@ namespace Proyecto_Factura_V3.Models
 
         public DateTime Date { get; set; }
 
+
         public List<ReceiptDetail> ReceiptDetails { get; set; }
+
+
+        public double FinalValue { get; set; }
     }
 }

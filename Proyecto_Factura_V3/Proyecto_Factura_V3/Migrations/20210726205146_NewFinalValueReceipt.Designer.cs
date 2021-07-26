@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proyecto_Factura_V3.DataAccess;
 
 namespace Proyecto_Factura_V3.Migrations
 {
     [DbContext(typeof(DDBBContext))]
-    partial class DDBBContextModelSnapshot : ModelSnapshot
+    [Migration("20210726205146_NewFinalValueReceipt")]
+    partial class NewFinalValueReceipt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,8 +191,8 @@ namespace Proyecto_Factura_V3.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("FinalValue")
-                        .HasColumnType("float");
+                    b.Property<int>("FinalValue")
+                        .HasColumnType("int");
 
                     b.HasKey("ReceiptHeadId");
 

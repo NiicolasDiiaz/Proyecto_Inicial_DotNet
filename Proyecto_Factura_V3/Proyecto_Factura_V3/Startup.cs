@@ -80,7 +80,6 @@ namespace Proyecto_Factura_V3
             services.AddTransient<ICompanyService, CompanyService>();
             services.AddTransient<IBranchService, BranchService>();
             services.AddTransient<IReceiptHeadService, ReceiptHeadService>();
-            services.AddTransient<IReceiptDetailService, ReceiptDetailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

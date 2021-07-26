@@ -32,14 +32,14 @@ namespace Proyecto_Factura_V3.Repositories
         {
             _context.ReceiptHeads.Add(entity);
             await _context.SaveChangesAsync();
-            return entity;
+            return await GetId(entity.ReceiptHeadId);
         }
 
         public async Task<ReceiptHead> UpdateEntity(ReceiptHead entity)
         {
-            var model = _context.ReceiptHeads.Update(entity).Entity;
+            _context.ReceiptHeads.Update(entity);
             await _context.SaveChangesAsync();
-            return model;
+            return await GetId(entity.ReceiptHeadId);
         }
 
 

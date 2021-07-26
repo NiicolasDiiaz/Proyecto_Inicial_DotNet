@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Factura_V3.DataAccess;
 using Proyecto_Factura_V3.Models;
+using Proyecto_Factura_V3.Request;
+using Proyecto_Factura_V3.ViewModels;
 
 namespace Proyecto_Factura_V3.Repositories
 {
@@ -15,6 +17,19 @@ namespace Proyecto_Factura_V3.Repositories
         public ReceiptDetailRepository(IDDBBContext context)
         {
             _context = context;
+        }
+        public async Task<ReceiptDetailView> ViewMapper(ReceiptDetail entity)
+        {
+            var model = await GetId(entity.ReceiptDetailId);
+            return new ReceiptDetailView
+            {
+                Quantity = model.Quantity,
+                ReceiptDetailId = model.ReceiptDetailId,
+                TaxRate = model.TaxRate,
+                UnitValue = model.UnitValue,
+                TotalValue = model.TotalValue,
+                Name = model.Product.Name
+            };
         }
 
         public async Task<ReceiptDetail> GetId(int id)
@@ -28,18 +43,21 @@ namespace Proyecto_Factura_V3.Repositories
         }
 
 
-        public async Task<ReceiptDetail> AddEntity (ReceiptDetail entity)
+        public async Task<ReceiptDetail> AddEntity (ReceiptDetailRequest entity, int receiptHeadId)
         {
             var product =  await _context.Products.Include(x => x.TaxRate).Where(x => x.ProductId == entity.ProductId).FirstOrDefaultAsync();
 
-            entity.TaxRate = product.TaxRate.Rate;
-            entity.UnitValue = product.UnitPrice;
-            var preTax = (entity.Quantity * product.UnitPrice);
-            entity.TotalValue = preTax + (preTax * product.TaxRate.Rate);
-
-            _context.ReceiptDetails.Add(entity);
+            var model = _context.ReceiptDetails.Add(new ReceiptDetail
+            {
+                Quantity = entity.Quantity,
+                ProductId = entity.ProductId,
+                TaxRate = product.TaxRate.Rate,
+                UnitValue = product.UnitPrice,
+                TotalValue = (entity.Quantity * product.UnitPrice) + ((entity.Quantity * product.UnitPrice) * product.TaxRate.Rate),
+                ReceiptHeadId = receiptHeadId
+            }).Entity;
             await _context.SaveChangesAsync();
-            return entity;
+            return model;
         }
 
         public async Task<ReceiptDetail> UpdateEntity(ReceiptDetail entity)
