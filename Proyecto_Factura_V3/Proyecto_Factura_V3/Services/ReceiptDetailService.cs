@@ -34,7 +34,7 @@ namespace Proyecto_Factura_V3.Services
             {
                 Quantity = entity.Quantity,
                 ProductId = entity.ProductId,
-                ReceiptHeadId = entity.ReceiptHeadId
+                //ReceiptHeadId = entity.ReceiptHeadId
             });
         }
 

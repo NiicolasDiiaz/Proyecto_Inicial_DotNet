@@ -30,12 +30,22 @@ namespace Proyecto_Factura_V3.Services
 
         public async Task<ReceiptHead> AddEntity(ReceiptHeadRequest entity)
         {
+            List<ReceiptDetail> receiptDetails = new List<ReceiptDetail>();
+            foreach (var item in entity.ReceiptDetails)
+            {
+                receiptDetails.Add(new ReceiptDetail
+                {
+                    Quantity = item.Quantity,
+                    ProductId = item.ProductId
+                });
+            }
             return await _repository.AddEntity(new ReceiptHead
             {
                 BranchId = entity.BranchId,
                 CustomerId = entity.CustomerId,
-                Date = DateTime.Now
-            }); ;
+                Date = DateTime.Now,
+                ReceiptDetails = receiptDetails
+            });
         }
 
         public async Task<ReceiptHead> UpdateEntity(ReceiptHead entity)
