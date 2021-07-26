@@ -37,9 +37,14 @@ namespace Proyecto_Factura_V3.Services
             });
         }
 
-        public async Task<TaxRate> UpdateEntity(TaxRate entity)
+        public async Task<TaxRate> UpdateEntity(int id, TaxRateRequest entity)
         {
-            return await _repository.UpdateEntity(entity);
+            return await _repository.UpdateEntity(new TaxRate
+            {
+                TaxRateId = id,
+                Category = entity.Category,
+                Rate = entity.Rate
+            });
         }
 
 

@@ -30,20 +30,27 @@ namespace Proyecto_Factura_V3.Services
 
         public async Task<Product> AddEntity(ProductRequest entity)
         {
-            var model = new Product
+            return await _repository.AddEntity(new Product
             {
                 Description = entity.Description,
                 Manufacturer = entity.Manufacturer,
                 Name = entity.Name,
                 UnitPrice = entity.UnitPrice,
                 TaxRateId = entity.TaxRateId,
-            };
-            return await _repository.AddEntity(model);
+            });
         }
 
-        public async Task<Product> UpdateEntity(Product entity)
+        public async Task<Product> UpdateEntity(int id, ProductRequest entity)
         {
-            return await _repository.UpdateEntity(entity);
+            return await _repository.UpdateEntity(new Product
+            {
+                ProductId = id,
+                Description = entity.Description,
+                Manufacturer = entity.Manufacturer,
+                Name = entity.Name,
+                UnitPrice = entity.UnitPrice,
+                TaxRateId = entity.TaxRateId,
+            });
         }
 
 

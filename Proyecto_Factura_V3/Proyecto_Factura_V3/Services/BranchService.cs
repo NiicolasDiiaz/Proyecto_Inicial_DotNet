@@ -44,9 +44,20 @@ namespace Proyecto_Factura_V3.Services
             });
         }
 
-        public async Task<Branch> UpdateEntity(Branch entity)
+        public async Task<Branch> UpdateEntity(int id, BranchRequest entity)
         {
-            return await _repository.UpdateEntity(entity);
+            return await _repository.UpdateEntity(new Branch
+            {
+                BranchId = id,
+                Name = entity.Name,
+                Description = entity.Description,
+                City = entity.City,
+                Address = entity.Address,
+                EmailAddress = entity.EmailAddress,
+                Phone = entity.Phone,
+                CompanyId = entity.CompanyId,
+                Country = entity.Country
+            });
         }
 
 

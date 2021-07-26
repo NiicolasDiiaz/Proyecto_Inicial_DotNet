@@ -14,7 +14,7 @@ namespace Proyecto_Factura_V3.Services
 
         Task<Product> AddEntity(ProductRequest entity);
 
-        Task<Product> UpdateEntity(Product entity);
+        Task<Product> UpdateEntity(int id, ProductRequest entity);
 
         Task DeleteEntity(Product entity);
         Task DeleteId(int id);

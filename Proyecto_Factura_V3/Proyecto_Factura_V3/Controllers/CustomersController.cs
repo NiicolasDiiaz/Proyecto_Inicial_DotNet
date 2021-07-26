@@ -45,11 +45,10 @@ namespace Proyecto_Factura_V3.Controllers
         }
 
 
-        [HttpPut]
-        public async Task<Customer> Put([FromBody] Customer request)
+        [HttpPut("{id}")]
+        public async Task<Customer> Put(int id, [FromBody] CustomerRequest request)
         {
-            await _service.UpdateEntity(request);
-            return request;
+            return await _service.UpdateEntity(id, request);
         }
 
 

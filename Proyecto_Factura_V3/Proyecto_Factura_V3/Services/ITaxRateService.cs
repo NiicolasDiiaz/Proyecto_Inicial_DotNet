@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Factura_V3.Services
 {
-    public interface ICompanyService
+    public interface ITaxRateService
     {
-        Task<Company> GetId(int id);
-        List<Company> GetAll();
+        Task<TaxRate> GetId(int id);
+        List<TaxRate> GetAll();
 
-        Task<Company> AddEntity(CompanyRequest entity);
+        Task<TaxRate> AddEntity(TaxRateRequest entity);
 
-        Task<Company> UpdateEntity(Company entity);
+        Task<TaxRate> UpdateEntity(int id, TaxRateRequest entity);
 
-        Task DeleteEntity(Company entity);
+        Task DeleteEntity(TaxRate entity);
         Task DeleteId(int id);
     }
 }

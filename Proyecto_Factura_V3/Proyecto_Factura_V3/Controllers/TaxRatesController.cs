@@ -45,11 +45,10 @@ namespace Proyecto_Factura_V3.Controllers
         }
 
 
-        [HttpPut]
-        public async Task<TaxRate> Put([FromBody] TaxRate request)
+        [HttpPut("{id}")]
+        public async Task<TaxRate> Put(int id, [FromBody] TaxRateRequest request)
         {
-            await _service.UpdateEntity(request);
-            return request;
+            return await _service.UpdateEntity(id, request);
         }
 
 

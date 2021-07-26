@@ -40,9 +40,17 @@ namespace Proyecto_Factura_V3.Services
             });
         }
 
-        public async Task<Customer> UpdateEntity(Customer entity)
+        public async Task<Customer> UpdateEntity(int id, CustomerRequest entity)
         {
-            return await _repository.UpdateEntity(entity);
+            return await _repository.UpdateEntity(new Customer
+            {
+                CustomerId = id,
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                Cellphone = entity.Cellphone,
+                EmailAddress = entity.EmailAddress,
+                HomeAddress = entity.HomeAddress
+            });
         }
 
 

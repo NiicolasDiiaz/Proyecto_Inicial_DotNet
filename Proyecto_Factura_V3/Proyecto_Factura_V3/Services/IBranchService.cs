@@ -14,7 +14,7 @@ namespace Proyecto_Factura_V3.Services
 
         Task<Branch> AddEntity(BranchRequest entity);
 
-        Task<Branch> UpdateEntity(Branch entity);
+        Task<Branch> UpdateEntity(int id, BranchRequest entity);
 
         Task DeleteEntity(Branch entity);
         Task DeleteId(int id);
