@@ -10,7 +10,7 @@ namespace Proyecto_Factura_V3.Services
     public interface IBranchService
     {
         Task<Branch> GetId(int id);
-        List<Branch> GetAll();
+        Task<List<Branch>> GetAll();
 
         Task<Branch> AddEntity(BranchRequest entity);
 

@@ -32,9 +32,9 @@ namespace Proyecto_Factura_V3.Controllers
         }
         
         [HttpGet]
-        public List<Customer> Get() //Deberia ser (int? id) ? Acepto null y lidio con eso
+        public async Task<List<Customer>> Get() //Deberia ser (int? id) ? Acepto null y lidio con eso
         {
-            return _service.GetAll();
+            return await _service.GetAll();
         }
 
 

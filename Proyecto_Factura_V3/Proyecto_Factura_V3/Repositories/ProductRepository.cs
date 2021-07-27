@@ -22,9 +22,9 @@ namespace Proyecto_Factura_V3.Repositories
             return await _context.Products.Include(x => x.TaxRate).Where(x => x.ProductId == id).FirstOrDefaultAsync();
         }
 
-        public List<Product> GetAll()
+        public async Task<List<Product>> GetAll()
         {
-            return _context.Products.Include(x => x.TaxRate).Select(x => x).ToList();
+            return await _context.Products.Include(x => x.TaxRate).Select(x => x).ToListAsync();
         }
 
 

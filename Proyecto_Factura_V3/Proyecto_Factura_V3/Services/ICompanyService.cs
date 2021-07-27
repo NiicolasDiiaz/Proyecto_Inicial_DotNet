@@ -10,7 +10,7 @@ namespace Proyecto_Factura_V3.Services
     public interface ICompanyService
     {
         Task<Company> GetId(int id);
-        List<Company> GetAll();
+        Task<List<Company>> GetAll();
 
         Task<Company> AddEntity(CompanyRequest entity);
 

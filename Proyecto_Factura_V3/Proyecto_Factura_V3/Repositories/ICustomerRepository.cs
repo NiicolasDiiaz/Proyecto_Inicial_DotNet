@@ -9,7 +9,7 @@ namespace Proyecto_Factura_V3.Repositories
     public interface ICustomerRepository
     {
         Task<Customer> GetId(int id);
-        List<Customer> GetAll();
+        Task<List<Customer>> GetAll();
 
         Task<Customer> AddEntity(Customer entity);
 

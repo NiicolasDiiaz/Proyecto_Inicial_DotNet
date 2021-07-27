@@ -10,7 +10,7 @@ namespace Proyecto_Factura_V3.Services
     public interface ICustomerService
     {
         Task<Customer> GetId(int id);
-        List<Customer> GetAll();
+        Task<List<Customer>> GetAll();
 
         Task<Customer> AddEntity(CustomerRequest entity);
 

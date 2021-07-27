@@ -9,7 +9,7 @@ namespace Proyecto_Factura_V3.Repositories
     public interface IProductRepository
     {
         Task<Product> GetId(int id);
-        List<Product> GetAll();
+        Task<List<Product>> GetAll();
 
         Task<Product> AddEntity(Product entity);
 

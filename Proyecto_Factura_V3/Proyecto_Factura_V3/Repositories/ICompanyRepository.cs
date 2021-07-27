@@ -9,7 +9,7 @@ namespace Proyecto_Factura_V3.Repositories
     public interface ICompanyRepository
     {
         Task<Company> GetId(int id);
-        List<Company> GetAll();
+        Task<List<Company>> GetAll();
 
         Task<Company> AddEntity(Company entity);
 

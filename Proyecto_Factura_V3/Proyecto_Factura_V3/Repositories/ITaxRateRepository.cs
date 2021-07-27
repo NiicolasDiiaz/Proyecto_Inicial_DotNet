@@ -9,7 +9,7 @@ namespace Proyecto_Factura_V3.Repositories
     public interface ITaxRateRepository
     {
         Task<TaxRate> GetId(int id);
-        List<TaxRate> GetAll();
+        Task<List<TaxRate>> GetAll();
 
         Task<TaxRate> AddEntity(TaxRate entity);
 

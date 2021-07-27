@@ -10,7 +10,7 @@ namespace Proyecto_Factura_V3.Services
     public interface IProductService
     {
         Task<Product> GetId(int id);
-        List<Product> GetAll();
+        Task<List<Product>> GetAll();
 
         Task<Product> AddEntity(ProductRequest entity);
 

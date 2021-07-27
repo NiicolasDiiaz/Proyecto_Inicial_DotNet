@@ -10,7 +10,7 @@ namespace Proyecto_Factura_V3.Services
     public interface ITaxRateService
     {
         Task<TaxRate> GetId(int id);
-        List<TaxRate> GetAll();
+        Task<List<TaxRate>> GetAll();
 
         Task<TaxRate> AddEntity(TaxRateRequest entity);
 

@@ -9,7 +9,7 @@ namespace Proyecto_Factura_V3.Repositories
     public interface IBranchRepository
     {
         Task<Branch> GetId(int id);
-        List<Branch> GetAll();
+        Task<List<Branch>> GetAll();
 
         Task<Branch> AddEntity(Branch entity);
 

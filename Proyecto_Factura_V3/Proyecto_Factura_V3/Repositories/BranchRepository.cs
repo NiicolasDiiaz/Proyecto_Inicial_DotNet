@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Proyecto_Factura_V3.DataAccess;
 using Proyecto_Factura_V3.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Proyecto_Factura_V3.Repositories
 {
@@ -18,12 +19,12 @@ namespace Proyecto_Factura_V3.Repositories
 
         public async Task<Branch> GetId(int id)
         {
-            return await _context.Branches.FindAsync(id);
+            return await _context.Branches.Where(x => x.BranchId == id).FirstOrDefaultAsync();
         }
 
-        public List<Branch> GetAll()
+        public async Task<List<Branch>> GetAll()
         {
-            return _context.Branches.Select(x => x).ToList();
+            return await _context.Branches.Select(x => x).ToListAsync();
         }
 
 

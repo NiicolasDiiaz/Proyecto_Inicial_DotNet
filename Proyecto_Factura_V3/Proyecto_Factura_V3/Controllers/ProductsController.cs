@@ -26,15 +26,15 @@ namespace Proyecto_Factura_V3.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<Product> Get(int id) //Deberia ser (int? id) ? Acepto null y lidio con eso
+        public async Task<Product> Get(int id) 
         {
             return await _service.GetId(id);
         }
         
         [HttpGet]
-        public List<Product> Get() //Deberia ser (int? id) ? Acepto null y lidio con eso
+        public async Task<List<Product>> Get()
         {
-            return _service.GetAll();
+            return await _service.GetAll();
         }
 
 

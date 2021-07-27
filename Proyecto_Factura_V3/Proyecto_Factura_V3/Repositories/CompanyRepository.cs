@@ -22,9 +22,9 @@ namespace Proyecto_Factura_V3.Repositories
             return await _context.Companies.Include(x => x.Branches).Where(x => x.CompanyId == id).FirstOrDefaultAsync();
         }
 
-        public List<Company> GetAll()
+        public async Task<List<Company>> GetAll()
         {
-            return _context.Companies.Include(x => x.Branches).Select(x => x).ToList();
+            return await _context.Companies.Include(x => x.Branches).Select(x => x).ToListAsync();
         }
 
 

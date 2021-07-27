@@ -22,9 +22,9 @@ namespace Proyecto_Factura_V3.Services
             return await _repository.GetId(id);
         }
 
-        public List<Company> GetAll()
+        public async Task<List<Company>> GetAll()
         {
-            return _repository.GetAll();
+            return await _repository.GetAll();
         }
 
 
