@@ -57,14 +57,14 @@ namespace Proyecto_Factura_V3.Repositories
                 ReceiptHeadId = receiptHeadId
             }).Entity;
             await _context.SaveChangesAsync();
-            return model;
+            return await GetId(model.ReceiptDetailId);
         }
 
         public async Task<ReceiptDetail> UpdateEntity(ReceiptDetail entity)
         {
-            var model = _context.ReceiptDetails.Update(entity).Entity;
+            _context.ReceiptDetails.Update(entity);
             await _context.SaveChangesAsync();
-            return model;
+            return await GetId(entity.ReceiptDetailId);
         }
 
 
