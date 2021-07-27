@@ -74,7 +74,7 @@ namespace Proyecto_Factura_V3.Services
             foreach (var item in entity.ReceiptDetails)
             {
                 var modelDetail = await _detailRepository.AddEntity(item, model.ReceiptHeadId);
-                finalValue = finalValue + modelDetail.TotalValue;
+                finalValue += modelDetail.TotalValue;
             }
 
             model.FinalValue = finalValue;

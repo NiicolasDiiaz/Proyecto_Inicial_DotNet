@@ -45,7 +45,7 @@ namespace Proyecto_Factura_V3.Repositories
 
         public async Task<ReceiptDetail> AddEntity (ReceiptDetailRequest entity, int receiptHeadId)
         {
-            var product =  await _context.Products.Include(x => x.TaxRate).Where(x => x.ProductId == entity.ProductId).FirstOrDefaultAsync();
+            var product = await _context.Products.Include(x => x.TaxRate).Where(x => x.ProductId == entity.ProductId).FirstOrDefaultAsync();
 
             var model = _context.ReceiptDetails.Add(new ReceiptDetail
             {
