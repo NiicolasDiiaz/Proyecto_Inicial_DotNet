@@ -22,9 +22,9 @@ namespace Proyecto_Factura_V3.Repositories
             return await _context.ReceiptHeads.Include(x => x.Branch).Include(x => x.Customer).Include(x => x.ReceiptDetails).Where(x => x.ReceiptHeadId == id).FirstOrDefaultAsync();
         }
 
-        public List<ReceiptHead> GetAll()
+        public async Task<List<ReceiptHead>> GetAll()
         {
-            return _context.ReceiptHeads.Include(x => x.Branch).Include(x => x.Customer).Include(x => x.ReceiptDetails).Select(x => x).ToList();
+            return await _context.ReceiptHeads.Include(x => x.Branch).Include(x => x.Customer).Include(x => x.ReceiptDetails).Select(x => x).ToListAsync();
         }
 
 

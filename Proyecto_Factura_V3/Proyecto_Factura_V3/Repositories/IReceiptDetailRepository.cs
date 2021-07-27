@@ -12,7 +12,7 @@ namespace Proyecto_Factura_V3.Repositories
     {
         Task<ReceiptDetailView> ViewMapper(ReceiptDetail entity);
         Task<ReceiptDetail> GetId(int id);
-        List<ReceiptDetail> GetAll();
+        Task<List<ReceiptDetail>> GetAll();
 
         Task<ReceiptDetail> AddEntity(ReceiptDetailRequest entity, int receiptHeadId);
 

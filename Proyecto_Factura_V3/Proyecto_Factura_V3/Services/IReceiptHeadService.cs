@@ -11,7 +11,7 @@ namespace Proyecto_Factura_V3.Services
     public interface IReceiptHeadService
     {
         Task<ReceiptHeadView> GetId(int id);
-       Task<List<ReceiptHeadView>> GetAll();
+        Task<List<ReceiptHeadView>> GetAll();
 
         Task<ReceiptHeadView> AddEntity(ReceiptHeadRequest entity);
 

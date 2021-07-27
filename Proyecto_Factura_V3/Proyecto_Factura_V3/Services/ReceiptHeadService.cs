@@ -52,7 +52,7 @@ namespace Proyecto_Factura_V3.Services
         public async Task<List<ReceiptHeadView>> GetAll()
         {
             List<ReceiptHeadView> receiptHeadViews = new List<ReceiptHeadView>();
-            var model = _repository.GetAll();
+            var model = await _repository.GetAll();
             foreach (var item in model)
             {
                 receiptHeadViews.Add(await viewMapper(item));

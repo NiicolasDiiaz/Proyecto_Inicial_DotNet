@@ -37,9 +37,9 @@ namespace Proyecto_Factura_V3.Repositories
             return await _context.ReceiptDetails.Include(x => x.Product).Where(x => x.ReceiptDetailId == id).FirstOrDefaultAsync();
         }
 
-        public List<ReceiptDetail> GetAll()
+        public async Task<List<ReceiptDetail>> GetAll()
         {
-            return _context.ReceiptDetails.Include(x => x.Product).Select(x => x).ToList();
+            return await _context.ReceiptDetails.Include(x => x.Product).Select(x => x).ToListAsync();
         }
 
 

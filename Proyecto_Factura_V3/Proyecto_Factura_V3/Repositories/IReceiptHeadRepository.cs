@@ -9,7 +9,7 @@ namespace Proyecto_Factura_V3.Repositories
     public interface IReceiptHeadRepository
     {
         Task<ReceiptHead> GetId(int id);
-        List<ReceiptHead> GetAll();
+        Task<List<ReceiptHead>> GetAll();
 
         Task<ReceiptHead> AddEntity(ReceiptHead entity);
 
