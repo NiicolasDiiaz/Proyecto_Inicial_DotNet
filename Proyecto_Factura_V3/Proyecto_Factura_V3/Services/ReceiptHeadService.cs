@@ -1,4 +1,5 @@
-﻿using Proyecto_Factura_V3.Models;
+﻿using AutoMapper;
+using Proyecto_Factura_V3.Models;
 using Proyecto_Factura_V3.Repositories;
 using Proyecto_Factura_V3.Request;
 using Proyecto_Factura_V3.ViewModels;
@@ -13,40 +14,34 @@ namespace Proyecto_Factura_V3.Services
     {
         private readonly IReceiptHeadRepository _repository;
         private readonly IReceiptDetailRepository _detailRepository;
+        private readonly IMapper _mapper;
 
-        public ReceiptHeadService(IReceiptHeadRepository repository, IReceiptDetailRepository detailRepository)
+
+        public ReceiptHeadService(IReceiptHeadRepository repository, IReceiptDetailRepository detailRepository, IMapper mapper)
         {
             _repository = repository;
             _detailRepository = detailRepository;
+            _mapper = mapper;
         }
 
-        public async Task<ReceiptHeadView> viewMapper(ReceiptHead entity)
+        public async Task<ReceiptHeadView> ViewMapper(ReceiptHead entity)
         {
             List<ReceiptDetailView> receiptDetailViews = new List<ReceiptDetailView>();
             foreach (var item in entity.ReceiptDetails)
             {
                 receiptDetailViews.Add(await _detailRepository.ViewMapper(item));
             }
-            
-            return new ReceiptHeadView
-            {
-                BranchAddress = entity.Branch.Address,
-                BranchCity = entity.Branch.City,
-                BranchName = entity.Branch.Name,
-                BranchPhone = entity.Branch.Phone,
-                CustomerId = entity.CustomerId,
-                CustomerName = entity.Customer.FirstName + " " + entity.Customer.LastName,
-                Date = entity.Date,
-                FinalValue = entity.FinalValue,
-                ReceiptHeadId = entity.ReceiptHeadId,
-                ReceiptDetails = receiptDetailViews
-            };
+
+            var model = _mapper.Map<ReceiptHeadView>(entity);
+            model.ReceiptDetails = receiptDetailViews;
+
+            return model;
         }
 
         public async Task<ReceiptHeadView> GetId(int id)
         {
             var model = await _repository.GetId(id);
-            return await viewMapper(model);
+            return await ViewMapper(model);
         }
 
         public async Task<List<ReceiptHeadView>> GetAll()
@@ -55,8 +50,9 @@ namespace Proyecto_Factura_V3.Services
             var model = await _repository.GetAll();
             foreach (var item in model)
             {
-                receiptHeadViews.Add(await viewMapper(item));
+                receiptHeadViews.Add(await ViewMapper(item));
             }
+
             return receiptHeadViews;
         }
 
@@ -79,13 +75,13 @@ namespace Proyecto_Factura_V3.Services
 
             model.FinalValue = finalValue;
             await UpdateEntity(model);
-            return await viewMapper(model);
+            return await ViewMapper(model);
         }
 
         public async Task<ReceiptHeadView> UpdateEntity(ReceiptHead entity)
         {
             var model = await _repository.UpdateEntity(entity);
-            return await viewMapper(model);
+            return await ViewMapper(model);
         }
 
 

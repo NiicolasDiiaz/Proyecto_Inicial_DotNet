@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Factura_V3.DataAccess;
 using Proyecto_Factura_V3.Models;
@@ -13,23 +14,18 @@ namespace Proyecto_Factura_V3.Repositories
     public class ReceiptDetailRepository : IReceiptDetailRepository
     {
         private readonly IDDBBContext _context;
+        private readonly IMapper _mapper;
 
-        public ReceiptDetailRepository(IDDBBContext context)
+        public ReceiptDetailRepository(IDDBBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
+
         public async Task<ReceiptDetailView> ViewMapper(ReceiptDetail entity)
         {
             var model = await GetId(entity.ReceiptDetailId);
-            return new ReceiptDetailView
-            {
-                Quantity = model.Quantity,
-                ReceiptDetailId = model.ReceiptDetailId,
-                TaxRate = model.TaxRate,
-                UnitValue = model.UnitValue,
-                TotalValue = model.TotalValue,
-                Name = model.Product.Name
-            };
+            return _mapper.Map<ReceiptDetailView>(model);
         }
 
         public async Task<ReceiptDetail> GetId(int id)
@@ -57,6 +53,7 @@ namespace Proyecto_Factura_V3.Repositories
                 ReceiptHeadId = receiptHeadId
             }).Entity;
             await _context.SaveChangesAsync();
+
             return await GetId(model.ReceiptDetailId);
         }
 
