@@ -1,4 +1,5 @@
-﻿using Proyecto_Factura_V3.Models;
+﻿using AutoMapper;
+using Proyecto_Factura_V3.Models;
 using Proyecto_Factura_V3.Repositories;
 using Proyecto_Factura_V3.Request;
 using System;
@@ -11,10 +12,12 @@ namespace Proyecto_Factura_V3.Services
     public class ProductService : IProductService
     {
         private readonly IProductRepository _repository;
-        
-        public ProductService(IProductRepository repository)
+        private readonly IMapper _mapper;
+
+        public ProductService(IProductRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<Product> GetId(int id)
@@ -30,27 +33,15 @@ namespace Proyecto_Factura_V3.Services
 
         public async Task<Product> AddEntity(ProductRequest entity)
         {
-            return await _repository.AddEntity(new Product
-            {
-                Description = entity.Description,
-                Manufacturer = entity.Manufacturer,
-                Name = entity.Name,
-                UnitPrice = entity.UnitPrice,
-                TaxRateId = entity.TaxRateId,
-            });
+            return await _repository.AddEntity(_mapper.Map<Product>(entity));
         }
 
         public async Task<Product> UpdateEntity(int id, ProductRequest entity)
         {
-            return await _repository.UpdateEntity(new Product
-            {
-                ProductId = id,
-                Description = entity.Description,
-                Manufacturer = entity.Manufacturer,
-                Name = entity.Name,
-                UnitPrice = entity.UnitPrice,
-                TaxRateId = entity.TaxRateId,
-            });
+            var model = _mapper.Map<Product>(entity);
+            model.ProductId = id;
+
+            return await _repository.UpdateEntity(model);
         }
 
 

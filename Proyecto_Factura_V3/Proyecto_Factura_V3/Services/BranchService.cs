@@ -1,4 +1,5 @@
-﻿using Proyecto_Factura_V3.Models;
+﻿using AutoMapper;
+using Proyecto_Factura_V3.Models;
 using Proyecto_Factura_V3.Repositories;
 using Proyecto_Factura_V3.Request;
 using System;
@@ -11,11 +12,12 @@ namespace Proyecto_Factura_V3.Services
     public class BranchService : IBranchService
     {
         private readonly IBranchRepository _repository;
+        private readonly IMapper _mapper;
 
-
-        public BranchService(IBranchRepository repository)
+        public BranchService(IBranchRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<Branch> GetId(int id)
@@ -31,33 +33,15 @@ namespace Proyecto_Factura_V3.Services
 
         public async Task<Branch> AddEntity(BranchRequest entity)
         {
-            return await _repository.AddEntity(new Branch
-            {
-                Name = entity.Name,
-                Description = entity.Description,
-                City = entity.City,
-                Address = entity.Address,
-                EmailAddress = entity.EmailAddress,
-                Phone = entity.Phone,
-                CompanyId = entity.CompanyId,         
-                Country = entity.Country
-            });
+            return await _repository.AddEntity(_mapper.Map<Branch>(entity));
         }
 
         public async Task<Branch> UpdateEntity(int id, BranchRequest entity)
         {
-            return await _repository.UpdateEntity(new Branch
-            {
-                BranchId = id,
-                Name = entity.Name,
-                Description = entity.Description,
-                City = entity.City,
-                Address = entity.Address,
-                EmailAddress = entity.EmailAddress,
-                Phone = entity.Phone,
-                CompanyId = entity.CompanyId,
-                Country = entity.Country
-            });
+            var model = _mapper.Map<Branch>(entity);
+            model.BranchId = id;
+
+            return await _repository.UpdateEntity(model);
         }
 
 

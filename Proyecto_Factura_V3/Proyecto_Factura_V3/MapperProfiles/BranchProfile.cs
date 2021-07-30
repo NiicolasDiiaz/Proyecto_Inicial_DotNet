@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Factura_V3.MapperProfiles
 {
-    public class TaxRateProfile : Profile
+    public class BranchProfile : Profile
     {
-        public TaxRateProfile()
-        {  
+        public BranchProfile()
+        {
             //De request a model:
-            CreateMap<TaxRateRequest, TaxRate>(); 
+            CreateMap<BranchRequest, Branch>();
         }
 
     }

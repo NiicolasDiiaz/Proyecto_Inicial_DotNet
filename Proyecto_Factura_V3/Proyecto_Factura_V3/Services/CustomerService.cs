@@ -1,4 +1,5 @@
-﻿using Proyecto_Factura_V3.Models;
+﻿using AutoMapper;
+using Proyecto_Factura_V3.Models;
 using Proyecto_Factura_V3.Repositories;
 using Proyecto_Factura_V3.Request;
 using System;
@@ -11,10 +12,12 @@ namespace Proyecto_Factura_V3.Services
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _repository;
+        private readonly IMapper _mapper;
 
-        public CustomerService(ICustomerRepository repository)
+        public CustomerService(ICustomerRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<Customer> GetId(int id)
@@ -30,27 +33,15 @@ namespace Proyecto_Factura_V3.Services
 
         public async Task<Customer> AddEntity(CustomerRequest entity)
         {
-            return await _repository.AddEntity(new Customer
-            {
-                FirstName=entity.FirstName,
-                LastName=entity.LastName,
-                Cellphone=entity.Cellphone,
-                EmailAddress=entity.EmailAddress,
-                HomeAddress=entity.HomeAddress
-            });
+            return await _repository.AddEntity(_mapper.Map<Customer>(entity));
         }
 
         public async Task<Customer> UpdateEntity(int id, CustomerRequest entity)
         {
-            return await _repository.UpdateEntity(new Customer
-            {
-                CustomerId = id,
-                FirstName = entity.FirstName,
-                LastName = entity.LastName,
-                Cellphone = entity.Cellphone,
-                EmailAddress = entity.EmailAddress,
-                HomeAddress = entity.HomeAddress
-            });
+            var model = _mapper.Map<Customer>(entity);
+            model.CustomerId = id;
+
+            return await _repository.UpdateEntity(model);
         }
 
 
