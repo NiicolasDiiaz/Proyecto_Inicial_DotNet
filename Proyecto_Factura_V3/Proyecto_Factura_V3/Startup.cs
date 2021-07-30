@@ -61,6 +61,10 @@ namespace Proyecto_Factura_V3
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
 
+            //Adding auto mapper:
+            services.AddAutoMapper(typeof(Startup));
+            services.AddControllersWithViews();
+
             //Database injection:
             services.AddTransient<IDDBBContext, DDBBContext>();
 

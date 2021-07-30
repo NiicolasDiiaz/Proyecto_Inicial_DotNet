@@ -1,4 +1,5 @@
-﻿using Proyecto_Factura_V3.Models;
+﻿using AutoMapper;
+using Proyecto_Factura_V3.Models;
 using Proyecto_Factura_V3.Repositories;
 using Proyecto_Factura_V3.Request;
 using System;
@@ -11,10 +12,12 @@ namespace Proyecto_Factura_V3.Services
     public class TaxRateService : ITaxRateService
     {
         private readonly ITaxRateRepository _repository;
+        private readonly IMapper _mapper;
 
-        public TaxRateService(ITaxRateRepository repository)
+        public TaxRateService(ITaxRateRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<TaxRate> GetId(int id)
@@ -30,21 +33,15 @@ namespace Proyecto_Factura_V3.Services
 
         public async Task<TaxRate> AddEntity(TaxRateRequest entity)
         {
-            return await _repository.AddEntity(new TaxRate
-            {
-                Category = entity.Category,
-                Rate = entity.Rate
-            });
+            return await _repository.AddEntity(_mapper.Map<TaxRate>(entity));
         }
 
         public async Task<TaxRate> UpdateEntity(int id, TaxRateRequest entity)
         {
-            return await _repository.UpdateEntity(new TaxRate
-            {
-                TaxRateId = id,
-                Category = entity.Category,
-                Rate = entity.Rate
-            });
+            var model = _mapper.Map<TaxRate>(entity);
+            model.TaxRateId = id;
+
+            return await _repository.UpdateEntity(model);
         }
 
 
