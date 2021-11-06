@@ -23,7 +23,7 @@ namespace Proyecto_Factura_V3.Controllers
         {
             _service = service;
 
-            _logger = logger;
+            _logger = logger;//
         }
 
         [HttpGet("{id}")]
